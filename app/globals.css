@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bio-green: #22c55e;
+  --bio-dark: #166534;
+  --earth-light: #f5f3ef;
+  --earth-medium: #9d8f76;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+  background: linear-gradient(135deg, #f0fdf4 0%, #faf9f7 100%);
+  min-height: 100vh;
+}
+
+/* Bio-inspired gradients */
+.bio-gradient {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+.earth-gradient {
+  background: linear-gradient(135deg, #f5f3ef 0%, #e8e4db 100%);
+}
+
+/* Smooth animations */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f3ef;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9d8f76;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7d6f5c;
+}

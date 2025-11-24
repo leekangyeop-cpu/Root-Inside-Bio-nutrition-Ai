@@ -29,11 +29,26 @@ export const NutrientsSchema = z.object({
 // Daily Value schema
 export const DVSchema = z.record(z.string(), z.number().min(0).max(1000));
 
-// AI Summary schema
+// AI Summary schema - 식약처 기준 상세 분석
 export const AISummarySchema = z.object({
   summary: z.string(),
   highlights: z.array(z.string()),
   cautions: z.array(z.string()),
+  nutritional_analysis: z.object({
+    energy_analysis: z.string(),
+    macronutrient_balance: z.string(),
+    micronutrient_evaluation: z.string(),
+  }).optional(),
+  kfda_compliance: z.object({
+    labeling_status: z.string(),
+    health_claims: z.array(z.string()),
+    warnings: z.array(z.string()),
+  }).optional(),
+  functional_food_analysis: z.object({
+    classification: z.string(),
+    functionality: z.array(z.string()),
+    intake_recommendations: z.string(),
+  }).optional(),
 });
 
 // Complete nutrition label schema

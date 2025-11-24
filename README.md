@@ -1,9 +1,31 @@
 # Root Inside BioNutrition AI (MVP)
 
-AI-powered nutrition label OCR, validation, and summarization system for food manufacturers.
+AI-powered nutrition label OCR, validation, and **pharmacist-level analysis** system for food manufacturers and consumers.
 
 **Input:** PDF/Image (nutrition facts label)  
-**Output:** Standardized JSON + AI-generated summary
+**Output:** Standardized JSON + AI-generated summary + **Pharmacist Professional Analysis**
+
+---
+
+## ✨ 주요 기능
+
+### 🔬 약사 관점 전문 분석
+- **비타민 13종 완전 분석**: A, B1-B12, C, D, E, K
+- **미네랄 12종 완전 분석**: 칼슘, 마그네슘, 아연, 철, 인, 요오드, 셀레늄, 구리, 망간, 크롬, 몰리브덴, 칼륨
+- **식약처 기준 대비 정확한 준수율 계산** (0-100%)
+- **약물 상호작용 자동 감지** (항응고제, 당뇨약, 혈압약)
+- **질환자/임산부/어린이별 맞춤 주의사항**
+- **복용 가이드라인 자동 생성**
+
+### 📊 영양성분 분석
+- OCR을 통한 영양성분표 자동 인식
+- 식약처 기준 영양소 기준치(%NRV) 자동 계산
+- 건강기능식품 분류 및 기능성 원료 식별
+
+### 🤖 AI 기반 상세 리포트
+- Google Gemini를 활용한 자연어 요약
+- 식약처 인정 기능성만 정확히 표시
+- 개인 맞춤형 섭취 권장사항
 
 ---
 
@@ -33,7 +55,7 @@ Open [http://localhost:3000](http://localhost:3000) and upload a nutrition label
 
 - **Node.js** 18+ and npm
 - **Azure Computer Vision** account ([Sign up](https://azure.microsoft.com/services/cognitive-services/computer-vision/))
-- **OpenAI API** key ([Get key](https://platform.openai.com/api-keys))
+- **Google Gemini API** key ([Get key](https://aistudio.google.com/app/apikey))
 - (Optional) **Vercel** account for deployment
 
 ---
@@ -47,7 +69,7 @@ Create `.env.local` in the project root:
 ```bash
 AZURE_VISION_ENDPOINT=https://<region>.api.cognitive.microsoft.com/
 AZURE_VISION_KEY=your-azure-key-here
-OPENAI_API_KEY=sk-your-openai-key-here
+GEMINI_API_KEY=your-gemini-api-key-here
 ```
 
 ### 2. Install Dependencies

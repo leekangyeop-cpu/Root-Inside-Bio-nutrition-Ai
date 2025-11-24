@@ -14,6 +14,8 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
+    const productName = formData.get('productName') as string || '';
+    const productForm = formData.get('productForm') as string || '';
     
     if (!file) {
       return NextResponse.json(
@@ -43,15 +45,21 @@ export async function POST(request: NextRequest) {
     // Step 4: Calculate %DV (Daily Value percentages)
     const dv = calculateAllDV(validated.nutrients || {});
     
-    // Step 5: Generate AI Summary
+    // Step 5: Generate AI Summary with product info
     const aiSummary = await generateSummary({
       ...validated,
       dv,
+      productName,
+      productForm,
     });
     
     // Step 6: Compile final response
     const response = {
-      meta: validated.meta || { product: file.name, batch: new Date().toISOString().split('T')[0] },
+      meta: validated.meta || { 
+        product: productName || file.name, 
+        batch: new Date().toISOString().split('T')[0],
+        form: productForm,
+      },
       serving_size: validated.serving_size,
       nutrients: validated.nutrients,
       dv,
@@ -59,6 +67,8 @@ export async function POST(request: NextRequest) {
       _debug: {
         ocrText: ocrText.substring(0, 500), // First 500 chars for debugging
         filename: file.name,
+        productName,
+        productForm,
         timestamp: new Date().toISOString(),
       },
     };
